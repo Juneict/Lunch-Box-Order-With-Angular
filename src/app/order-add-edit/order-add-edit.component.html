@@ -1,0 +1,60 @@
+<h1 mat-dialog-title color="primary">ဟင်းမှာရန်</h1>
+<form [formGroup]="menuForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content>
+    <div class="row">
+        <mat-form-field appearance="outline">
+        <mat-label>အမည်</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="name">
+    </mat-form-field>
+    </div>
+    
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>မနက်စာ</mat-label>
+            <mat-select formControlName="lunch">
+              <mat-option *ngFor="let menu of menus" [value]="menu">
+                {{menu}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>ညနေစာ</mat-label>
+            <mat-select formControlName="dinner">
+                <mat-option *ngFor="let menu of menus" [value]="menu">
+                    {{menu}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="outline">
+        <mat-label>ရက်ရွှေးရန်</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="order_date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>          
+    </div>
+
+    <div class="row">
+        <label id="example-radio-group-label">ထမင်း</label>
+        <mat-radio-group aria-label="Select an option" formControlName="additional">
+            <mat-radio-button value="ယူ">ယူ</mat-radio-button>
+            <mat-radio-button value="မယူ">မယူ</mat-radio-button>
+        </mat-radio-group>  
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="outline" >
+            <mat-label>မှတ်ချက်</mat-label>
+            <textarea matInput formControlName="note"></textarea>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-button type="button" [mat-dialog-close]="false">မမှာတော့ပါ</button>
+    <button mat-flat-button color="primary" type="submit">{{ data ? 'ပြင်မည်' : 'မှာမည်' }}</button>
+</div>
+</form>
